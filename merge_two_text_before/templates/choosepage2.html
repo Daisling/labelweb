@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>起始页面</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+{% extends "bootstrap/base.html" %}
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">项目名称</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+<!--                <li><a href="#">Dashboard</a></li>-->
+                <li><a href="#">设置</a></li>
+                <li><a href="{{ url_for('profile') }}">个人主页</a></li>
+                <li><a href="{{ url_for('logout') }}">退出登录</a></li>
+              </ul>
+<!--              <form class="navbar-form navbar-right">-->
+<!--                <input type="text" class="form-control" placeholder="Search...">-->
+<!--              </form>-->
+            </div>
+          </div>
+    </nav>
+
+   <div class="container">
+     <div class="jumbotron" style="padding-top: 80px;">
+        <h1>欢迎{{name1}}来到分类网站</h1>
+         <h1 id="#use">您接收的任务单号为{{name2}}</h1>
+<!--         <div style="margin_top:20px;"><h2>请选择模型</h2></div>-->
+<!--             <div>-->
+<!--                <label class="radio-inline">-->
+<!--                    <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> Prob-->
+<!--                </label>-->
+<!--                <label class="radio-inline">-->
+<!--                    <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> Entropy-->
+<!--                </label>-->
+<!--                 <label class="radio-inline">-->
+<!--                    <input type="radio" name="optionsRadiosinline" id="optionsRadios5"  value="option2"> BvSB-->
+<!--                 </label>-->
+
+<!--             </div>-->
+
+            <div class="form-group">
+                <label style="margin_top:20px;"><front size="30"><h2>请选择模型</h2></front></label>
+                <select class="form-control">
+                    <option>Prob</option>
+                    <option>Entropy</option>
+                    <option>BvSB</option>
+                </select>
+
+            </div>
+
+
+<!--             <button type="button" id="1" class="btn btn-info btn-block btn-lg" style="margin-top:200px">开始标注</button>-->
+              <form action="{{ url_for('predict',workidofuser=name2) }}"  method='POST'>
+                 <input type="submit" value="开始预测" class="btn btn-danger btn-lg btn-block" style="margin-top:50px;"/>
+
+              </form>
+
+     </div>
+  </div>
+
+{% endblock %}
+</body>
+
+
+
+</html>
+
+

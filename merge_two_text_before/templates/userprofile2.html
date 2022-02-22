@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sidebar Dashboard Template</title>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+     
+    
+   
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    
+        <!-- Black Dashboard CSS -->
+    <link href="../static/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/profilestyle2.css') }}">
+  </head>
+  <body >
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <input type="checkbox" id="check">
+
+  
+    <nav class="navbar fixed-top  bg-dark navbar-expand-lg navbar-dark" data-color="orange" >
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <div class="navbar-toggle d-inline">
+            <button type="button" class="navbar-toggler">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </button>
+          </div>
+         
+        </div>
+        
+        <a class="navbar-brand" href="#">项目名称</a>
+        <label for="check">
+          <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('begin') }}">任务集市</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">设置</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('profile') }}">个人主页</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="{{ url_for('logout') }}">退出登录</a>
+                </li>
+              </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar" style="margin-left: 0px;">
+      <center>
+        <div class="profile_info">
+        <img src="{{ url_for('static',filename='images/userpic/1.png') }}" class="profile_image" alt="">
+        <h4>Jessica</h4>
+        </div>
+      </center>
+      <a href="/chart"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="/profile"><i class="fas fa-cogs"></i><span>进行的任务</span></a>
+     
+      <a href="/record"><i class="fas fa-th"></i><span>日志</span></a>
+<!--      <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>-->
+      <a href="/setting"><i class="fas fa-sliders-h"></i><span>设置</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content"style="padding-top: 80px;">
+        
+
+<!--        <div class="col-sm-6 col-md-4" >-->
+<!--            <div class="thumbnail" style="background-color: #27293d; border:#27293d ;">-->
+<!--                <img src="{{url_for('.static', filename='images/picbymarchant/bird.jpg')}}"-->
+<!--                    alt="通用的占位符缩略图">-->
+<!--                <div class="caption">-->
+<!--  &lt;!&ndash;                    <h3>缩略图标签</h3>&ndash;&gt;-->
+<!--                    <p>一些示例文本。一些示例文本。</p>-->
+<!--                    <p>-->
+<!--                        <a href="#" class="btn btn-primary" role="button">-->
+<!--                            按钮-->
+<!--                        </a>-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        {% for b in data %}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail" style="background-color: #27293d; border:#27293d ;">
+                <img src="{{b[0]}}"
+                    alt="通用的占位符缩略图">
+                <div class="caption">
+  <!--                    <h3>状态：</h3>-->
+                    <p>正在进行中......</p>
+                    <p>工单为：{{b[1]}}</p>
+                    <p>
+  
+                         <form action="{{ url_for('predict',workidofuser=b[1]) }}"  method='POST'>
+                         <input type="submit" value="继续完成" class="btn btn-primary" />
+  
+                          </form>
+  
+                    </p>
+                </div>
+            </div>
+  
+        </div>
+    
+        {% endfor %}
+    </div>
+
+
+
+
+      <!--   Core JS Files   -->
+<script src="../static/assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="../static/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../static/assets/js/black-dashboard.js?v=1.0.0" type="text/javascript"></script>
+
+  </body>
+  
+
+</html>

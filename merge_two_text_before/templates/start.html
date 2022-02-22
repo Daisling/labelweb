@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>起始页面</title>
+</head>
+<body>
+{% extends "bootstrap/base.html" %}
+{% block content %}
+    <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+					<a class="navbar-brand" href="#">项目名称</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+					<form class="navbar-form navbar-left" role="search" style="margin-left:30px ">
+						<div class="form-group">
+							<input type="text" class="form-control" />
+						</div> <button type="submit" class="btn btn-default">搜索</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right" >
+						<li>
+							 <a href="/profile">个人主页</a>
+						</li>
+						<li class="dropdown">
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多操作<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									 <a href="#">商家合作</a>
+								</li>
+
+								<li class="divider">
+								</li>
+								<li>
+									 <a href="/logout">退出登录</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+			<div class="row clearfix" style="padding-top: 80px;">
+				<div class="col-md-10 column">
+					<h2>
+						欢迎来到标注网站！
+					</h2>
+					<p>
+						本网站利用深度强化学习和主动学习技术，通过少量人机交互来完成大量图片的精准分类，为深度学习的落地应用提供重要的数据支撑，同时提供线上标注任务交易，致力于帮助待业人群解决收入困难。
+					</p>
+					<p>
+						 <a class="btn" href="#">更多细节 »</a>
+					</p>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="thumbnail">
+								<img alt="300x200" style="height: 200px; width: 300px;" src="{{url_for('.static', filename='images/picbymarchant/output_8_2.jpg')}}" />
+								<div class="caption">
+									<h3>
+										CAT
+									</h3>
+									<p>
+									  这个任务是关于猫的标注
+									</p>
+									<p>
+										 <a class="btn btn-primary" href="#">我要接单</a>
+									</p>
+								</div>
+							</div>
+						</div>
+                        {% for data in workset %}
+						<div class="col-md-4">
+							<div class="thumbnail">
+								<img alt="300x200" style="height: 200px; width: 300px;" src="{{data[1]}}" />
+								<div class="caption">
+									<h3>
+										BIRD
+									</h3>
+									<p>
+										这个任务是关于鸟的标注
+									</p>
+									{% if data[2] == 0 %}
+<!--									如果任务完成分配就标红-->
+									<p>
+<!--										 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>-->
+										 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="height: 40px; ">我要接单</button>
+											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal-dialog" style="padding-top: 120px;height: 200px; width: 300px;">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																	aria-hidden="true">×
+															</button>
+															<h4 class="modal-title" id="myModalLabel">
+																确认接单？
+															</h4>
+														</div>
+														<div class="modal-body">
+															接了任务却没做完会有惩罚~~~
+														</div>
+														<div class="modal-footer">
+															<div class="row" >
+
+															<button type="button" class="btn btn-default " style="margin-right: 15px;height: 29.97px;"
+																	data-dismiss="modal">关闭
+															</button>
+<!--															<button type="button" class="btn btn-primary">-->
+<!--																提交-->
+<!--															</button>-->
+
+															<form method="POST"   class="col-md-1">
+																  <input type="submit"  value="确认接单" class="btn btn-primary btn-sm"  formaction="{{ url_for('choosepage',workid=data[0]) }}"><br/>
+															</form>
+
+
+															</div>
+														</div>
+													</div><!-- /.modal-content -->
+												</div><!-- /.modal-dialog -->
+											</div><!-- /.modal -->
+
+									</p>
+									{% endif %}
+									{% if data[2] == 1 %}
+									<p>
+										<button type="button" class="btn btn-danger">任务已完成分配</button>
+									</p>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						<div class="col-md-4">
+							<div class="thumbnail">
+								<img alt="300x200" style="height: 200px; width: 300px;" src="{{url_for('.static', filename='images/picbymarchant/fish.jpg')}}" />
+								<div class="caption">
+									<h3>
+										神秘任务
+									</h3>
+									<p>
+										接单有惊喜！
+									</p>
+									<p>
+										 <a class="btn btn-primary" href="#">我要接单</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 column">
+					<div class="list-group">
+						 <a href="#" class="list-group-item active">消息通知</a>
+						<div class="list-group-item">
+							系统推荐！
+						</div>
+						<div class="list-group-item">
+							<h4 class="list-group-item-heading">
+								您还有一项任务未完成
+							</h4>
+							<p class="list-group-item-text">
+								...
+							</p>
+						</div>
+						<div class="list-group-item">
+							 <span class="badge">14</span> 系统消息
+						</div> <a class="list-group-item active"> <span class="badge">14</span> 私信</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+</body>
+
+
+
+</html>

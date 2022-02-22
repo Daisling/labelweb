@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sidebar Dashboard Template</title>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+     
+    
+   
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    
+        <!-- Black Dashboard CSS -->
+    <link href="../static/assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/profilestyle2.css') }}">
+      <script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </head>
+  <body >
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <input type="checkbox" id="check">
+
+    <!-- <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-lg" data-color="orange">
+      <div class="container">
+        <a class="navbar-brand" href="#">Fixed top</a>
+        <label for="check">
+          <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="#">Hidden brand</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+            <form class="form-inline ml-auto">
+                <div class="form-group has-white">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-link btn-icon btn-round">
+                    <i class="tim-icons icon-zoom-split"></i>
+                </button>
+            </form>
+          </div>
+      
+
+
+      </div>
+    </nav>
+   -->
+    <nav class="navbar fixed-top  bg-dark navbar-expand-lg navbar-dark" data-color="orange" >
+      <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <div class="navbar-toggle d-inline">
+            <button type="button" class="navbar-toggler">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </button>
+          </div>
+         
+        </div>
+        
+        <a class="navbar-brand" href="#">项目名称</a>
+        <label for="check">
+          <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+          <span class="navbar-toggler-bar navbar-kebab"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('begin') }}">任务集市</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">设置</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('profile') }}">个人主页</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="{{ url_for('logout') }}">退出登录</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar" style="margin-left: 0px;">
+      <center>
+        <div class="profile_info">
+        <img src="{{ url_for('static',filename='images/userpic/1.png') }}" class="profile_image" alt="">
+        <h4>Jessica</h4>
+        </div>
+      </center>
+      <a href="/chart"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="/profile"><i class="fas fa-cogs"></i><span>进行的任务</span></a>
+    
+      <a href="/record"><i class="fas fa-th"></i><span>日志</span></a>
+<!--      <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>-->
+      <a href="/setting"><i class="fas fa-sliders-h"></i><span>设置</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content"style="padding-top: 80px;">
+        
+      <div class="row">
+        
+        <div class="col-12"  style="padding-left: 50px;padding-right: 50px;">
+          <div class="card" >
+            <div class="card-body">
+              <h4 class="card-title">模型训练参数</h4>
+              <!-- <p class="card-text"></p> -->
+              <p class="card-text"><small class="text-muted">上一次更新时间为2021-12-3 23:09:14</small></p>
+            </div>
+            <canvas id="myChart" style="height: 250px;"></canvas>
+          </div>  
+        </div>
+      
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" style="padding-left: 50px;">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category">本周标注的图片数</h5>
+              <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="chartLinePurple"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category">本月接单量</h5>
+              <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> 3,500</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="CountryChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" style="padding-right: 50px;">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category">本季度任务完成量</h5>
+              <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12,100</h3>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="chartLineGreen"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <script>
+        var getData = $.get('/data');
+
+  getData.done(function(results){
+
+
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+
+          // The data for our dataset
+          data: {
+              labels: results.count,
+              datasets: [{
+                  label: "损失",
+                  //backgroundColor: 'rgb(0, 99, 132)',
+                  borderColor: '#36a2eb',
+                  data: results.accuracy,
+              },{
+                  label: "单标签准确度",
+                  //backgroundColor: 'rgb(0, 200, 0)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: results.single_lable,
+              },{
+                  label: "双标签准确度",
+                  //backgroundColor: 'rgb(200, 0, 0)',
+                  borderColor: '#ffcd56',
+                  data: results.double_lable,
+              },{
+                  label: "三标签准确度",
+                  //backgroundColor: 'rgb(0, 0, 200)',
+                  borderColor: '#4bc0c0',
+                  data: results.three_lable,
+              }
+            ]
+          },
+
+          // Configuration options go here
+          options: {}
+      });
+ });
+
+    </script>
+
+
+<!--     <script>-->
+<!--        // === include 'setup' then 'config' above ===-->
+<!--      -->
+
+
+<!--        const labels = [-->
+<!--            'January',-->
+<!--            'February',-->
+<!--            'March',-->
+<!--            'April',-->
+<!--            'May',-->
+<!--            'June',-->
+<!--            ];-->
+<!--            const data = {-->
+<!--            labels: labels,-->
+<!--            datasets: [{-->
+<!--                label: 'My First dataset',-->
+<!--                backgroundColor: 'rgb(255, 99, 132)',-->
+<!--                borderColor: 'rgb(255, 99, 132)',-->
+<!--                data: [0, 10, 5, 2, 20, 30, 45],-->
+<!--            }]-->
+<!--        };-->
+
+<!--            const config = {-->
+<!--            type: 'line',-->
+<!--            data: data,-->
+<!--            options: {}-->
+<!--            };-->
+<!--        const myChart = new Chart(-->
+<!--          document.getElementById('myChart'),-->
+<!--          config-->
+<!--        );-->
+<!--      </script>-->
+       <script>
+        // === include 'setup' then 'config' above ===
+      
+
+
+        const labels1 = [
+            '星期一',
+            '星期二',
+            '星期三',
+            '星期四',
+            '星期五',
+            '星期六',
+            ];
+            const data1 = {
+            labels: labels1,
+            datasets: [{
+                label: '图片数',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+            const config1 = {
+            type: 'line',
+            data: data1,
+            options: {}
+            };
+        const myChart1 = new Chart(
+          document.getElementById('chartLinePurple'),
+          config1
+        );
+      </script> 
+        <script>
+        // === include 'setup' then 'config' above ===
+
+
+
+        const labels2 = [
+            '1st',
+            '6th',
+            '11th',
+            '16th',
+            '21th',
+            '26th',
+            ];
+            const data2 = {
+            labels: labels2,
+            datasets: [{
+                label: '接单量',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+            const config2 = {
+            type: 'line',
+            data: data2,
+            options: {}
+            };
+        const myChart2 = new Chart(
+          document.getElementById('CountryChart'),
+          config2
+        );
+      </script>
+        <script>
+        // === include 'setup' then 'config' above ===
+      
+
+
+        const labels3 = [
+            'January',
+            'February',
+            'March',
+            ];
+            const data3 = {
+            labels: labels3,
+            datasets: [{
+                label: '任务完成量',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [290, 20, 307],
+            }]
+        };
+
+            const config3 = {
+            type: 'line',
+            data: data3,
+            options: {}
+            };
+        const myChart3 = new Chart(
+          document.getElementById('chartLineGreen'),
+          config3
+        );
+      </script>
+
+
+
+
+
+
+
+      <!--   Core JS Files   -->
+<script src="../static/assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="../static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="../static/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../static/assets/js/black-dashboard.js?v=1.0.0" type="text/javascript"></script>
+
+  </body>
+  
+
+</html>

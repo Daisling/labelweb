@@ -1,0 +1,38 @@
+
+
+
+
+
+.form-group {
+	margin-bottom: 0px;
+    margin-top: 18px;
+	position: relative;
+}
+
+.form-group input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 7px;
+	padding: 7px;
+	width: 100%;
+}
+.form-group.error input {
+	border-color: #e74c3c;
+}
+
+
+
+
+.form-group small {
+	color: #e74c3c;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-group.error small {
+	visibility: visible;
+}
